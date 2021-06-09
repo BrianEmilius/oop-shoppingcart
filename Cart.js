@@ -6,7 +6,18 @@ function Cart(target) {
 	this.shown = false;
 
 	this.addToCart = function(product) {
-		this.content.push(product);
+		var result = this.content.find(function(cartItem) {
+			if (cartItem.sku === product.sku) {
+				cartItem.setCount(1);
+				return true;
+			}
+			return false;
+		});
+
+		if (!result) {
+			product.setCount(1);
+			this.content.push(product);
+		}
 	}
 
 	this.showCart = function() {

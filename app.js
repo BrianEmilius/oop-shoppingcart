@@ -24,7 +24,7 @@ products.forEach(function(product) {
 target.addEventListener("click", function(event) {
 	if (event.target.className === "addToCart") {
 		var product = products.find(product => product.getSku() === event.target.dataset.sku);
-
+/* 		product.setCount(1); */
 		cart.addToCart(product);
 	}
 });

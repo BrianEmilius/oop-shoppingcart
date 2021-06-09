@@ -7,6 +7,7 @@ function Product({ sku, name, description, price, discount }) {
 	this.price = price;
 	this.discount = discount;
 	this.isDiscounted = false;
+	this.count = 0;
 
 	this.getSku = function() {
 		return this.sku;
@@ -30,6 +31,10 @@ function Product({ sku, name, description, price, discount }) {
 
 	this.makeCampaign = function() {
 		this.isDiscounted = !this.isDiscounted;
+	}
+
+	this.setCount = function(number) {
+		this.count = this.count + number;
 	}
 }
 
