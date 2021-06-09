@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		header {
+			display: flex;
+			justify-content: space-between;
+		}
+		header nav ul {
+			list-style: none;
+			display: flex;
+			justify-content: space-between;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<a href="/">Brians Ostebiks</a>
+		<nav>
+			<ul>
+				<li><a href="#">Link 1</a></li>
+				<li><a href="#">Link 2</a></li>
+				<li><a href="#">Link 3</a></li>
+			</ul>
+		</nav>
+		<button class="cartBtn">Kurv</button>
+		<ul class="cart"></ul>
+	</header>
+	<hr>
+	<main>
+		<h1>Produkter</h1>
+		<div class="products"></div>
+	</main>
+
+	<template id="productFull">
+		<article>
+			<h1 class="productTitle"></h1>
+			<p class="productPrice"></p>
+			<p class="productDiscount"></p>
+			<button class="addToCart">Læg i kurv</button>
+		</article>
+	</template>
+
+	<template id="cartContent">
+		<li>
+			<p class="productTitle"></p>
+			<p class="productPrice"></p>
+		</li>
+	</template>
+
+	<script src="/app.js" type="module" defer></script>
+</body>
+</html>
