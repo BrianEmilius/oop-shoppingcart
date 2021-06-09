@@ -30,8 +30,13 @@ function Cart(target) {
 		if (this.shown) {
 			this.content.forEach(product => {
 				var clone = template.content.cloneNode(true);
-				clone.querySelector(".productTitle").innerText = product.getName();
+				clone.querySelector(".productTitle").innerText = `${product.count}x ${product.getName()}`;
 				clone.querySelector(".productPrice").innerText = product.getPrice().toFixed(2);
+				var removeBtn = document.createElement("button");
+				removeBtn.className = "removeBtn";
+				removeBtn.innerText = "-";
+				removeBtn.dataset.sku = product.getSku();
+				clone.querySelector(".productItem").appendChild(removeBtn);
 				this.target.appendChild(clone);
 			});
 
@@ -46,6 +51,12 @@ function Cart(target) {
 		var reducer = (accumulator, currentValue) => accumulator + currentValue.getPrice();
 
 		return this.content.reduce(reducer, 0);
+	}
+
+	this.removeFromCart = function(sku) {
+		this.content = this.content.filter(function(cartItem) {
+			return cartItem.sku !== sku;
+		});
 	}
 }
 

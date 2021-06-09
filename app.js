@@ -32,3 +32,10 @@ target.addEventListener("click", function(event) {
 btn.addEventListener("click", function() {
 	cart.showCart();
 });
+
+document.getElementsByClassName("cart")[0].addEventListener("click", function(event) {
+	if (event.target.className === "removeBtn") {
+		//alert("remove the thingy with the thing!");
+		cart.removeFromCart(event.target.dataset.sku);
+	}
+});

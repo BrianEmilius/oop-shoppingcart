@@ -22,7 +22,7 @@ function Product({ sku, name, description, price, discount }) {
 	}
 
 	this.getPrice = function() {
-		return this.isDiscounted ? this.price * (1 - (this.discount / 100)) : this.price;
+		return this.isDiscounted ? (this.price * (1 - (this.discount / 100))) * (this.count > 0 ? this.count : 1) : this.price * (this.count > 0 ? this.count : 1);
 	}
 
 	this.getDiscount = function() {
