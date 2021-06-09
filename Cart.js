@@ -55,7 +55,15 @@ function Cart(target) {
 
 	this.removeFromCart = function(sku) {
 		this.content = this.content.filter(function(cartItem) {
-			return cartItem.sku !== sku;
+			if (cartItem.sku === sku) {
+				if (cartItem.count > 1) {
+					cartItem.setCount(-1);
+					return true;
+				} else {
+					return false;
+				}
+			}
+			return true;
 		});
 	}
 }
