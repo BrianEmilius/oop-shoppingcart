@@ -3,6 +3,7 @@
 function Cart(target) {
 	this.content = [];
 	this.target = target;
+	this.shown = false;
 
 	this.addToCart = function(product) {
 		this.content.push(product);
@@ -11,14 +12,29 @@ function Cart(target) {
 	this.showCart = function() {
 		var template = document.getElementById("cartContent");
 
+		this.shown = !this.shown;
+
 		this.target.innerHTML = "";
 
-		this.content.forEach(product => {
+		if (this.shown) {
+			this.content.forEach(product => {
+				var clone = template.content.cloneNode(true);
+				clone.querySelector(".productTitle").innerText = product.getName();
+				clone.querySelector(".productPrice").innerText = product.getPrice().toFixed(2);
+				this.target.appendChild(clone);
+			});
+
 			var clone = template.content.cloneNode(true);
-			clone.querySelector(".productTitle").innerText = product.getName();
-			clone.querySelector(".productPrice").innerText = product.getPrice();
+			clone.querySelector(".productTitle").innerText = "Total";
+			clone.querySelector(".productPrice").innerText = this.getTotal().toFixed(2);
 			this.target.appendChild(clone);
-		});
+		}
+	}
+
+	this.getTotal = function() {
+		var reducer = (accumulator, currentValue) => accumulator + currentValue.getPrice();
+
+		return this.content.reduce(reducer, 0);
 	}
 }
 
